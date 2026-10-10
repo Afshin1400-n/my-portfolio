@@ -1,4 +1,4 @@
-"use client"
+
 
 import Header from "./component/Header";
 import Hero from "./component/Hero";
@@ -7,6 +7,8 @@ import Skill from "./component/Skill";
 import Product from "./component/Product";
 import Footer from "./component/Footer";
 import Gap from "./component/Gap";
+import About from "./component/About";
+import Contact from "./component/Contact";
 
 export default function Home() {
 
@@ -15,7 +17,7 @@ export default function Home() {
      selection:bg-lime-400 selection:text-black">
 
       {/* ===== هدر ===== */}
-      <Header name="افشین نوروزی" home="خانه" product="پروؤه ها" about="درباره من" tel="تلفن"/>
+      <Header />
 
       {/* ===== Hero ===== */}
       <Hero />
@@ -29,9 +31,14 @@ export default function Home() {
       {/* ===== پروژه‌ها ===== */}
       <Product/>
 
+      {/* ===== درباره من ===== */}
+      <About />
+
       {/* ===== CTA پایانی ===== */}
       <Gap />
 
+
+<Contact />
       {/* ===== فوتر ===== */}
       <Footer />
 

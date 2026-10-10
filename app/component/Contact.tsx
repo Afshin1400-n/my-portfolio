@@ -1,0 +1,69 @@
+import Link from "next/link";
+
+function Contact() {
+  const contacts = [
+    {
+      label: "ایمیل",
+      value: "Afshin1993norouzi@outlook.com",
+      href: "mailto:Afshin1993norouzi@outlook.com",
+      accent: "hover:border-lime-400 hover:text-lime-600",
+      external: false,
+    },
+    {
+      label: "GitHub",
+      value: "@Afshin1400-n",
+      href: "https://github.com/Afshin1400-n",
+      accent: "hover:border-neutral-900 hover:text-neutral-900",
+      external: true,
+    },
+    {
+      label: "LinkedIn",
+      value: "Afshin Norouzi",
+      href:"https://www.linkedin.com/in/afshin-undefined-2468ab43b",
+      accent: "hover:border-fuchsia-400 hover:text-fuchsia-600",
+      external: true,
+    },
+  ];
+
+  return (
+    <section id="contact" className="scroll-mt-32 max-w-6xl mx-auto px-6 py-28">
+      {/* ===== تیتر ===== */}
+      <div className="mb-16">
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-lime-600 mb-4">
+          ۰۴ — تماس
+        </p>
+        <h2 className="text-4xl md:text-5xl font-black tracking-tight">
+          بیا گپ بزنیم
+          <br />
+          <span className="text-neutral-300">راه‌های ارتباطی</span>
+        </h2>
+      </div>
+
+      {/* ===== کارت‌های تماس ===== */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {contacts.map((item) => (
+          <Link
+            key={item.label}
+            href={item.href}
+            target={item.external ? "_blank" : undefined}
+            rel={item.external ? "noopener noreferrer" : undefined}
+            className={`group relative overflow-hidden rounded-3xl border border-neutral-900/10 bg-white p-8 transition-all duration-300 hover:shadow-xl hover:shadow-neutral-900/5 hover:-translate-y-1 ${item.accent}`}
+          >
+            <p className="text-xs font-black text-neutral-400 mb-3">
+              {item.label}
+            </p>
+            <p className="text-lg font-black text-neutral-800 transition-colors">
+              {item.value}
+            </p>
+
+            <span className="absolute top-6 left-6 w-8 h-8 rounded-full border border-neutral-900/10 flex items-center justify-center text-xs text-neutral-400 group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 group-hover:rotate-45 transition-all duration-300">
+              ↖
+            </span>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default Contact;
