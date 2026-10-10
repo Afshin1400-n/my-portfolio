@@ -1,39 +1,37 @@
+import { Suspense } from "react";
 import type { ReactElement } from "react";
 import Header from "./component/Header";
 import Hero from "./component/Hero";
 import Navbar from "./component/Navbar";
 import Skill from "./component/Skill";
 import Product from "./component/Product";
-import Footer from "./component/Footer";
 import About from "./component/About";
 import Contact from "./component/Contact";
+import Footer from "./component/Footer";
 
 export default function Home(): ReactElement {
   return (
-    <div className="min-h-screen bg-[#fafaf7] text-neutral-900 antialiased selection:bg-lime-400 selection:text-black">
-      {/* ===== Header ===== */}
+    <>
       <Header />
+      <main className="flex-1">
+        <Hero />
+        <Navbar />
+        <Skill />
 
-      {/* ===== Hero ===== */}
-      <Hero />
+        <Suspense
+          fallback={
+            <div className="text-center py-20 text-neutral-500">
+              Loading projects...
+            </div>
+          }
+        >
+          <Product />
+        </Suspense>
 
-      {/* ===== Marquee ===== */}
-      <Navbar />
-
-      {/* ===== Skills ===== */}
-      <Skill />
-
-      {/* ===== Projects ===== */}
-      <Product />
-
-      {/* ===== About ===== */}
-      <About />
-
-      {/* ===== Contact ===== */}
-      <Contact />
-
-      {/* ===== Footer ===== */}
+        <About />
+        <Contact />
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }
