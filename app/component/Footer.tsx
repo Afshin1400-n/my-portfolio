@@ -1,4 +1,5 @@
 import type { ReactElement } from "react";
+import Year from "./Year";
 
 type SocialLink = {
   label: string;
@@ -33,7 +34,7 @@ export default function Footer(): ReactElement {
     <footer className="border-t border-neutral-900/10 bg-lime-100">
       <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-sm text-neutral-500 font-bold">
-          © {new Date().getFullYear()} Afshin Norouzi. All rights reserved.
+          © <Year /> Afshin Norouzi. All rights reserved.
         </p>
 
         <div className="flex gap-6 text-sm font-bold text-neutral-500">
