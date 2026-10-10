@@ -1,47 +1,59 @@
+import type { ReactElement } from "react";
 import Link from "next/link";
 
-function Contact() {
-  const contacts = [
-    {
-      label: "ایمیل",
-      value: "Afshin1993norouzi@outlook.com",
-      href: "mailto:Afshin1993norouzi@outlook.com",
-      accent: "hover:border-lime-400 hover:text-lime-600",
-      external: false,
-    },
-    {
-      label: "GitHub",
-      value: "@Afshin1400-n",
-      href: "https://github.com/Afshin1400-n",
-      accent: "hover:border-neutral-900 hover:text-neutral-900",
-      external: true,
-    },
-    {
-      label: "LinkedIn",
-      value: "Afshin Norouzi",
-      href:"https://www.linkedin.com/in/afshin-undefined-2468ab43b",
-      accent: "hover:border-fuchsia-400 hover:text-fuchsia-600",
-      external: true,
-    },
-  ];
+type ContactItem = {
+  label: string;
+  value: string;
+  href: string;
+  accent: string;
+  external: boolean;
+};
 
+const CONTACTS: readonly ContactItem[] = [
+  {
+    label: "Email",
+    value: "Afshin1993norouzi@outlook.com",
+    href: "mailto:Afshin1993norouzi@outlook.com",
+    accent: "hover:border-lime-400 hover:text-lime-600",
+    external: false,
+  },
+  {
+    label: "GitHub",
+    value: "@Afshin1400-n",
+    href: "https://github.com/Afshin1400-n",
+    accent: "hover:border-neutral-900 hover:text-neutral-900",
+    external: true,
+  },
+  {
+    label: "LinkedIn",
+    value: "Afshin Norouzi",
+    href: "https://www.linkedin.com/in/afshin-undefined-2468ab43b",
+    accent: "hover:border-fuchsia-400 hover:text-fuchsia-600",
+    external: true,
+  },
+];
+
+export default function Contact(): ReactElement {
   return (
-    <section id="contact" className="scroll-mt-32 max-w-6xl mx-auto px-6 py-28">
-      {/* ===== تیتر ===== */}
+    <section
+      id="contact"
+      className="scroll-mt-32 max-w-6xl mx-auto px-6 py-28"
+    >
+      {/* ===== Heading ===== */}
       <div className="mb-16">
         <p className="text-xs font-black uppercase tracking-[0.2em] text-lime-600 mb-4">
-          ۰۴ — تماس
+          04 — Contact
         </p>
         <h2 className="text-4xl md:text-5xl font-black tracking-tight">
-          بیا گپ بزنیم
+          Let&apos;s talk
           <br />
-          <span className="text-neutral-300">راه‌های ارتباطی</span>
+          <span className="text-neutral-300">Ways to reach me</span>
         </h2>
       </div>
 
-      {/* ===== کارت‌های تماس ===== */}
+      {/* ===== Contact cards ===== */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {contacts.map((item) => (
+        {CONTACTS.map((item) => (
           <Link
             key={item.label}
             href={item.href}
@@ -55,15 +67,9 @@ function Contact() {
             <p className="text-lg font-black text-neutral-800 transition-colors">
               {item.value}
             </p>
-
-            <span className="absolute top-6 left-6 w-8 h-8 rounded-full border border-neutral-900/10 flex items-center justify-center text-xs text-neutral-400 group-hover:bg-neutral-900 group-hover:text-white group-hover:border-neutral-900 group-hover:rotate-45 transition-all duration-300">
-              ↖
-            </span>
           </Link>
         ))}
       </div>
     </section>
   );
 }
-
-export default Contact;

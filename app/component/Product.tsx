@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import Link from "next/link";
 
 type Repo = {
@@ -8,8 +9,11 @@ type Repo = {
   updated_at: string;
 };
 
-function formatDate(dateString: string) {
-  return new Date(dateString).toLocaleDateString("fa-IR", {
+const GITHUB_USERNAME = "Afshin1400-n";
+const REPOS_PER_PAGE = 4;
+
+function formatDate(dateString: string): string {
+  return new Date(dateString).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
   });
@@ -17,11 +21,9 @@ function formatDate(dateString: string) {
 
 export const revalidate = 3600;
 
-export default async function Product() {
-  const username = "Afshin1400-n";
-
+export default async function Product(): Promise<ReactElement> {
   const response = await fetch(
-    `https://api.github.com/users/${username}/repos?sort=updated&per_page=4`,
+    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=${REPOS_PER_PAGE}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
@@ -33,31 +35,31 @@ export default async function Product() {
   if (!response.ok) {
     return (
       <div className="text-center py-20 text-neutral-500">
-        خطا در دریافت اطلاعات از گیت‌هاب ({response.status})
+        Failed to load projects from GitHub ({response.status})
       </div>
     );
   }
 
-  const repos = await response.json();
+  const repos: Repo[] = await response.json();
 
   return (
-    <section id="projects" className="max-w-6xl mx-auto px-6 py-28">
+    <section id="projects" className="scroll-mt-32 max-w-6xl mx-auto px-6 py-28">
       <div className="flex items-end justify-between mb-16 flex-wrap gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.2em] text-fuchsia-600 mb-4">
-            ۰۲ — نمونه‌کار
+            02 — Portfolio
           </p>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight">
-            پروژه‌های اخیر
+            Recent Projects
           </h2>
         </div>
         <Link
-          href={`https://github.com/${username}`}
+          href={`https://github.com/${GITHUB_USERNAME}`}
           target="_blank"
           rel="noopener noreferrer"
           className="text-sm font-black text-neutral-500 hover:text-lime-600 transition-colors"
         >
-          همه پروژه‌ها ←
+          All projects ←
         </Link>
       </div>
 
@@ -85,7 +87,7 @@ export default async function Product() {
                 {repo.name}
               </h3>
               <p className="text-neutral-500 leading-relaxed text-sm font-medium">
-                {repo.description || "بدون توضیحات"}
+                {repo.description ?? "No description"}
               </p>
             </div>
           </Link>
