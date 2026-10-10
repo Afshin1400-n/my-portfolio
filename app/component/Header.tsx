@@ -6,7 +6,7 @@ export default function Header(): ReactElement {
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-lime-100 border-b border-neutral-900/5">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-5">
         <Link href="/" className="text-lg font-black tracking-tight">
-          <span className="text-black-500">Afshin Norouzi</span>
+          <span className="text-red-500">Afshin Norouzi</span>
         </Link>
 
         <nav className="flex gap-8 text-lg font-medium text-black-500">
